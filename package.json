@@ -1,13 +1,20 @@
 {
-  "name": "proyectoweb_almendra",
+  "name": "ProyectoWeb_Almendra",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.20.1",
+    "nodemon": "^3.1.11"
+  }
 }

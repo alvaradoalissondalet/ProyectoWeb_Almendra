@@ -1,0 +1,23 @@
+const express = require("express");
+const mongoose = require("mongoose");
+
+const app = express();
+
+// Middleware para leer JSON en requests tipo POST/PUT
+app.use(express.json());
+
+// Conectar a MongoDB
+mongoose.connect("mongodb://localhost:27017/Almendra")
+  .then(() => console.log("✅ MongoDB conectado"))
+  .catch(err => console.error("❌ Error al conectar MongoDB: ODIO VIVIRRRR", err));
+
+// Importar rutas
+const nivelRoutes = require("./routes/NivelDificultadRoutes");
+
+// Usar rutas
+app.use("/api/niveles", nivelRoutes);
+
+// Inicializar servidor
+app.listen(3000, () => {
+  console.log("🚀 Servidor corriendo en http://localhost:3000");
+});
