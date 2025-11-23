@@ -8,16 +8,18 @@ app.use(express.json());
 
 // Conectar a MongoDB
 mongoose.connect("mongodb://localhost:27017/Almendra")
-  .then(() => console.log("✅ MongoDB conectado"))
-  .catch(err => console.error("❌ Error al conectar MongoDB: ODIO VIVIRRRR", err));
+  .then(() => console.log("MongoDB conectado"))
+  .catch(err => console.error("Error al conectar MongoDB: chau es, hijita", err));
 
 // Importar rutas
 const nivelRoutes = require("./routes/NivelDificultadRoutes");
+const rangoEdadRoutes = require("./routes/RangoEdadRoutes"); 
 
 // Usar rutas
 app.use("/api/niveles", nivelRoutes);
+app.use("/api/rangos", rangoEdadRoutes); 
 
 // Inicializar servidor
 app.listen(3000, () => {
-  console.log("🚀 Servidor corriendo en http://localhost:3000");
+  console.log("Servidor corriendo en http://localhost:3000");
 });
