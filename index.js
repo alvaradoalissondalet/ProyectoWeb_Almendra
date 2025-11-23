@@ -14,10 +14,12 @@ mongoose.connect("mongodb://localhost:27017/Almendra")
 // Importar rutas
 const nivelRoutes = require("./routes/NivelDificultadRoutes");
 const rangoEdadRoutes = require("./routes/RangoEdadRoutes"); 
+const categoriaRoutes = require("./routes/Categoria_SubcategoriasRoutes");
 
 // Usar rutas
 app.use("/api/niveles", nivelRoutes);
 app.use("/api/rangos", rangoEdadRoutes); 
+app.use("/api/categorias", categoriaRoutes);
 
 // Inicializar servidor
 app.listen(3000, () => {
