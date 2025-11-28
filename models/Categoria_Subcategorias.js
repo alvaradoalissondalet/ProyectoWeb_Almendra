@@ -7,7 +7,7 @@ const SubcategoriaSchema = new mongoose.Schema({
         required: true
     }
 }, {
-    _id: true,      // deja que cada subcategoria tenga su propio ID
+    _id: true, 
     versionKey: false
 });
 

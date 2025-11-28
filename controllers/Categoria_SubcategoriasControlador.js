@@ -81,9 +81,6 @@ exports.remove = async (req, res) => {
     }
 };
 
-
-/* ------------------ SUBCATEGORÍAS ------------------- */
-
 // POST /api/categorias/:id/subcategorias
 exports.addSubcategoria = async (req, res) => {
     try {
