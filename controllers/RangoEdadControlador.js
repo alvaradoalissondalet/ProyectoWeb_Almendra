@@ -1,4 +1,3 @@
-// controllers/rangoEdadController.js
 const RangoEdad = require('../models/RangoEdad');
 
 // GET /api/rangos
@@ -27,11 +26,15 @@ exports.create = async (req, res) => {
   try {
     const { NombreRango, Rango } = req.body;
 
-    const nuevo = new RangoEdad({
-      NombreRango,
-      Rango
-    });
+    // VALIDACIONES
+    if (!NombreRango || NombreRango.trim() === "") {
+      return res.status(400).json({ message: "NombreRango es obligatorio" });
+    }
+    if (!Rango || Rango.trim() === "") {
+      return res.status(400).json({ message: "Rango es obligatorio" });
+    }
 
+    const nuevo = new RangoEdad({ NombreRango, Rango });
     const saved = await nuevo.save();
     res.status(201).json(saved);
 
@@ -43,6 +46,16 @@ exports.create = async (req, res) => {
 // PUT /api/rangos/:id
 exports.update = async (req, res) => {
   try {
+    const { NombreRango, Rango } = req.body;
+
+    // VALIDACIONES
+    if (NombreRango !== undefined && NombreRango.trim() === "") {
+      return res.status(400).json({ message: "NombreRango no puede estar vacío" });
+    }
+    if (Rango !== undefined && Rango.trim() === "") {
+      return res.status(400).json({ message: "Rango no puede estar vacío" });
+    }
+
     const updated = await RangoEdad.findByIdAndUpdate(
       req.params.id,
       req.body,

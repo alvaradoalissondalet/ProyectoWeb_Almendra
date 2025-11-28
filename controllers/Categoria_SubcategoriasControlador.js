@@ -27,6 +27,11 @@ exports.create = async (req, res) => {
     try {
         const { NombreCategoria, Subcategorias } = req.body;
 
+        // VALIDACIÓN
+        if (!NombreCategoria || NombreCategoria.trim() === "") {
+            return res.status(400).json({ message: "El nombre de la categoría es obligatorio" });
+        }
+
         const nueva = new Categoria({
             NombreCategoria,
             Subcategorias: Subcategorias || []
@@ -42,6 +47,13 @@ exports.create = async (req, res) => {
 // PUT /api/categorias/:id
 exports.update = async (req, res) => {
     try {
+        const { NombreCategoria } = req.body;
+
+        // VALIDACIÓN
+        if (NombreCategoria !== undefined && NombreCategoria.trim() === "") {
+            return res.status(400).json({ message: "El nombre de la categoría no puede estar vacío" });
+        }
+
         const updated = await Categoria.findByIdAndUpdate(
             req.params.id,
             req.body,
@@ -75,10 +87,17 @@ exports.remove = async (req, res) => {
 // POST /api/categorias/:id/subcategorias
 exports.addSubcategoria = async (req, res) => {
     try {
+        const { NombreSubcategoria } = req.body;
+
+        // VALIDACIÓN
+        if (!NombreSubcategoria || NombreSubcategoria.trim() === "") {
+            return res.status(400).json({ message: "El nombre de la subcategoría es obligatorio" });
+        }
+
         const categoria = await Categoria.findById(req.params.id);
         if (!categoria) return res.status(404).json({ message: "Categoría no encontrada" });
 
-        categoria.Subcategorias.push({ NombreSubcategoria: req.body.NombreSubcategoria });
+        categoria.Subcategorias.push({ NombreSubcategoria });
 
         const saved = await categoria.save();
         res.status(201).json(saved);

@@ -1,4 +1,3 @@
-// controllers/nivelDificultadController.js
 const NivelDificultad = require('../models/NivelDificultad');
 
 // GET /api/niveles
@@ -26,9 +25,16 @@ exports.detail = async (req, res) => {
 exports.create = async (req, res) => {
   try {
     const { TipoNivel } = req.body;
+
+    // VALIDACIÓN
+    if (!TipoNivel || TipoNivel.trim() === "") {
+      return res.status(400).json({ message: "TipoNivel es obligatorio" });
+    }
+
     const nuevo = new NivelDificultad({ TipoNivel });
     const saved = await nuevo.save();
     res.status(201).json(saved);
+
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -37,14 +43,23 @@ exports.create = async (req, res) => {
 // PUT /api/niveles/:id
 exports.update = async (req, res) => {
   try {
+    const { TipoNivel } = req.body;
+
+    // VALIDACIÓN
+    if (TipoNivel !== undefined && TipoNivel.trim() === "") {
+      return res.status(400).json({ message: "TipoNivel no puede estar vacío" });
+    }
+
     const updated = await NivelDificultad.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true, runValidators: true }
     );
+
     if (!updated) return res.status(404).json({ message: "Nivel no encontrado" });
 
     res.json(updated);
+
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -57,6 +72,7 @@ exports.remove = async (req, res) => {
     if (!deleted) return res.status(404).json({ message: "Nivel no encontrado" });
 
     res.json({ message: "Nivel eliminado", nivel: deleted });
+
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
