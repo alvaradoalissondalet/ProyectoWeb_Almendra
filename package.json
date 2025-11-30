@@ -6,15 +6,18 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js"
-
   },
   "keywords": [],
   "author": "Adri y Ali",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.20.1",
-    "nodemon": "^3.1.11"
+    "nodemon": "^3.1.11",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1"
   }
 }

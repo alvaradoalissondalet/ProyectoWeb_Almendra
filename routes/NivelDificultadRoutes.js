@@ -1,11 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const controller = require("../controllers/NivelDificultadControlador");
+const authController = require("../controllers/AuthControlador");
 
-router.get("/", controller.list);
-router.get("/:id", controller.detail);
-router.post("/", controller.create);
-router.put("/:id", controller.update);
-router.delete("/:id", controller.remove);
+router.use(authController.protect);
+
+router.get("/",  authController.restrictTo('Administrador'), controller.list);
+router.get("/:id", authController.restrictTo('Administrador'), controller.detail);
+router.post("/", authController.restrictTo('Administrador'), controller.create);
+router.put("/:id", authController.restrictTo('Administrador'), controller.update);
+router.delete("/:id", authController.restrictTo('Administrador'), controller.remove);
 
 module.exports = router;

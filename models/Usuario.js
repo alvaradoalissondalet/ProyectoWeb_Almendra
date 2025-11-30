@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 const UsuarioSchema = new mongoose.Schema({
     NombreUsuario: {
@@ -14,6 +15,10 @@ const UsuarioSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    Password: {  // Ojo nuevo
+        type: String,
+        required: true
+    },
     id_Rangoedad: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'RangoEdad',
@@ -27,5 +32,17 @@ const UsuarioSchema = new mongoose.Schema({
 }, {
     versionKey: false
 });
+
+// Hash password antes de guardar
+UsuarioSchema.pre('save', async function(next) {
+    if (!this.isModified('Password')) return next();
+    this.Password = await bcrypt.hash(this.Password, 12);
+    next();
+});
+
+// Comparar passwords
+UsuarioSchema.methods.correctPassword = async function(candidatePassword, userPassword) {
+    return await bcrypt.compare(candidatePassword, userPassword);
+};
 
 module.exports = mongoose.model('Usuario', UsuarioSchema);

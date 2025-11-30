@@ -33,9 +33,9 @@ exports.detail = async (req, res) => {
 // POST /api/usuarios
 exports.create = async (req, res) => {
   try {
-    const { NombreUsuario, FechaNacimiento, Correo, id_Rangoedad, id_Rol } = req.body;
+    const { NombreUsuario, FechaNacimiento, Correo, Password, id_Rangoedad, id_Rol } = req.body;
 
-    // Validaciones
+    // Validaciones (estas están bien)
     if (!NombreUsuario || NombreUsuario.trim() === "") {
       return res.status(400).json({ message: "NombreUsuario es obligatorio" });
     }
@@ -46,6 +46,10 @@ exports.create = async (req, res) => {
 
     if (!Correo || Correo.trim() === "") {
       return res.status(400).json({ message: "Correo es obligatorio" });
+    }
+
+    if (!Password || Password.trim() === "") {
+      return res.status(400).json({ message: "Password es obligatorio" });
     }
 
     if (!id_Rangoedad) {
@@ -69,6 +73,7 @@ exports.create = async (req, res) => {
       NombreUsuario,
       FechaNacimiento,
       Correo,
+      Password,
       id_Rangoedad,
       id_Rol
     });
@@ -84,7 +89,7 @@ exports.create = async (req, res) => {
 // PUT /api/usuarios/:id
 exports.update = async (req, res) => {
   try {
-    const { NombreUsuario, FechaNacimiento, Correo, id_Rangoedad, id_Rol } = req.body;
+    const { NombreUsuario, FechaNacimiento, Correo, Password, id_Rangoedad, id_Rol } = req.body;
 
     if (NombreUsuario !== undefined && NombreUsuario.trim() === "") {
       return res.status(400).json({ message: "NombreUsuario no puede estar vacío" });
@@ -92,6 +97,11 @@ exports.update = async (req, res) => {
 
     if (Correo !== undefined && Correo.trim() === "") {
       return res.status(400).json({ message: "Correo no puede estar vacío" });
+    }
+
+    // Si se envía Password, validar que no esté vacío
+    if (Password !== undefined && Password.trim() === "") {
+      return res.status(400).json({ message: "Password no puede estar vacío" });
     }
 
     // Validar foreign keys
@@ -114,7 +124,6 @@ exports.update = async (req, res) => {
     );
 
     if (!updated) return res.status(404).json({ message: "Usuario no encontrado" });
-
     res.json(updated);
 
   } catch (err) {
