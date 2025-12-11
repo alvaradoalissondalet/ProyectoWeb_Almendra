@@ -5,19 +5,30 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "http1": "node server-http1.js",
+    "http2": "node server-http2.js",
+    "https": "node server-https.js",
+    "http2-https": "node server-http2-https.js",
+    "all": "concurrently \"npm run http1\" \"npm run http2\" \"npm run https\" \"npm run http2-https\"",
+    "certs": "node create-certs-node.js"
   },
   "keywords": [],
   "author": "Adri y Ali",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "bcryptjs": "^3.0.3",
+    "bcryptjs": "^2.4.3",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.20.1",
     "nodemon": "^3.1.11",
     "passport": "^0.7.0",
-    "passport-jwt": "^4.0.1"
+    "passport-jwt": "^4.0.1",
+    "spdy": "^4.0.2"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }

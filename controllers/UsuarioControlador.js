@@ -35,7 +35,7 @@ exports.create = async (req, res) => {
   try {
     const { NombreUsuario, FechaNacimiento, Correo, Password, id_Rangoedad, id_Rol } = req.body;
 
-    // Validaciones (estas están bien)
+    // Validaciones
     if (!NombreUsuario || NombreUsuario.trim() === "") {
       return res.status(400).json({ message: "NombreUsuario es obligatorio" });
     }
@@ -99,7 +99,7 @@ exports.update = async (req, res) => {
       return res.status(400).json({ message: "Correo no puede estar vacío" });
     }
 
-    // Si se envía Password, validar que no esté vacío
+    //Validar que no esté vacío
     if (Password !== undefined && Password.trim() === "") {
       return res.status(400).json({ message: "Password no puede estar vacío" });
     }
