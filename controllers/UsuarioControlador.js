@@ -26,7 +26,7 @@ exports.detail = async (req, res) => {
 
     res.json(usuario);
   } catch {
-    res.status(400).json({ message: "ID inválido" });
+    res.status(400).json({ message: "ID invalido" });
   }
 };
 
@@ -92,16 +92,16 @@ exports.update = async (req, res) => {
     const { NombreUsuario, FechaNacimiento, Correo, Password, id_Rangoedad, id_Rol } = req.body;
 
     if (NombreUsuario !== undefined && NombreUsuario.trim() === "") {
-      return res.status(400).json({ message: "NombreUsuario no puede estar vacío" });
+      return res.status(400).json({ message: "NombreUsuario no puede estar vacio" });
     }
 
     if (Correo !== undefined && Correo.trim() === "") {
-      return res.status(400).json({ message: "Correo no puede estar vacío" });
+      return res.status(400).json({ message: "Correo no puede estar vacio" });
     }
 
     //Validar que no esté vacío
     if (Password !== undefined && Password.trim() === "") {
-      return res.status(400).json({ message: "Password no puede estar vacío" });
+      return res.status(400).json({ message: "Password no puede estar vacio" });
     }
 
     // Validar foreign keys

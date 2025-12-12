@@ -13,8 +13,7 @@ exports.hasRole = (roles = []) => {
     next();
   };
 };
-
-// Middleware de admins
+// Middleware
 exports.isAdmin = (req, res, next) => {
   if (!req.user || !req.user.id_Rol || req.user.id_Rol.NombreRol !== 'Administrador') {
     return res.status(403).json({ 

@@ -26,7 +26,7 @@ exports.create = async (req, res) => {
   try {
     const { TipoNivel } = req.body;
 
-    // VALIDACIÓN
+    // VALIDACION
     if (!TipoNivel || TipoNivel.trim() === "") {
       return res.status(400).json({ message: "TipoNivel es obligatorio" });
     }
@@ -45,7 +45,7 @@ exports.update = async (req, res) => {
   try {
     const { TipoNivel } = req.body;
 
-    // VALIDACIÓN
+    // VALIDACION
     if (TipoNivel !== undefined && TipoNivel.trim() === "") {
       return res.status(400).json({ message: "TipoNivel no puede estar vacío" });
     }

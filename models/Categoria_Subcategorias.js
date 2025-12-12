@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-// Subdocumento para Subcategorías
+// Subdocumento para Subcategorias
 const SubcategoriaSchema = new mongoose.Schema({
     NombreSubcategoria: {
         type: String,
@@ -11,14 +11,14 @@ const SubcategoriaSchema = new mongoose.Schema({
     versionKey: false
 });
 
-// Categoría principal
+// Categoria principal
 const CategoriaSchema = new mongoose.Schema({
     NombreCategoria: {
         type: String,
         required: true
     },
     Subcategorias: {
-        type: [SubcategoriaSchema], // array de subcategorías
+        type: [SubcategoriaSchema], // array de subcategorias
         default: []
     }
 }, {

@@ -81,7 +81,6 @@ exports.protect = async (req, res, next) => {
         message: 'El usuario de este token ya no existe.'
       });
     }
-
     //Guardar usuario en req object
     req.user = currentUser;
     next();

@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(passport.initialize());
 
 // Conectar a MongoDB
-mongoose.connect("mongodb://localhost:27017/Almendra")
+mongoose.connect("mongodb://localhost:27017/Almendra")  //CAMBIAR PUERTO SI ES NECESARIO
   .then(() => console.log("MongoDB conectado"))
   .catch(err => console.error("Error al conectar MongoDB:", err));
 

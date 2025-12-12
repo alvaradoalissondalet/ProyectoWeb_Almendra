@@ -26,8 +26,7 @@ exports.detail = async (req, res) => {
 exports.create = async (req, res) => {
     try {
         const { NombreCategoria, Subcategorias } = req.body;
-
-        // VALIDACIÓN
+        // VALIDACION
         if (!NombreCategoria || NombreCategoria.trim() === "") {
             return res.status(400).json({ message: "El nombre de la categoría es obligatorio" });
         }
@@ -49,7 +48,7 @@ exports.update = async (req, res) => {
     try {
         const { NombreCategoria } = req.body;
 
-        // VALIDACIÓN
+        // VALIDACION
         if (NombreCategoria !== undefined && NombreCategoria.trim() === "") {
             return res.status(400).json({ message: "El nombre de la categoría no puede estar vacío" });
         }

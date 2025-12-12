@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 app.use(passport.initialize());
 
-mongoose.connect("mongodb://localhost:27017/Almendra")
+mongoose.connect("mongodb://localhost:27017/Almendra")   //Cambiar puerto si es necesario
   .then(() => console.log("MongoDB conectado"))
   .catch(err => console.error("Error MongoDB:", err));
 
@@ -40,8 +40,8 @@ app.get("/", (req, res) => {
 
 // VERIFICAR CERTIFICADOS
 try {
-  fs.readFileSync("./certificados/server.key");
-  fs.readFileSync("./certificados/server.crt");
+  fs.readFileSync("./certificados/server.key");     //INGRESAR RUTAS DE CERTIFICADO
+  fs.readFileSync("./certificados/server.crt");    // INGRESAR RUTA DE CERTIFICADO
   console.log("Certificados SSL encontrados");
 } catch (err) {
   console.error("ERROR: No se encuentran server.key y server.crt en ./certificados/");

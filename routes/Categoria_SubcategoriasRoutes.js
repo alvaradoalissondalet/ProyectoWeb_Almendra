@@ -6,7 +6,6 @@ const { isAdmin } = require("../auth/roles");
 
 // Aplicar JWT
 router.use(authController.protect);
-
 router.get("/",  authController.restrictTo('Administrador'), controller.list);
 router.get("/:id",  authController.restrictTo('Administrador'), controller.detail);
 router.post("/", authController.restrictTo('administrador'), controller.create);

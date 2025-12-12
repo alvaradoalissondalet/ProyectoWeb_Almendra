@@ -21,7 +21,7 @@ const categoriaRoutes = require("./routes/Categoria_SubcategoriasRoutes");
 const rolRoutes = require("./routes/RolesRoutes");
 const usuarioRoutes = require("./routes/UsuarioRoutes");
 
-// Usar rutas
+//rutas
 app.use("/api/auth", authRoutes);
 app.use("/api/niveles", nivelRoutes);
 app.use("/api/rangos", rangoEdadRoutes);
@@ -29,7 +29,7 @@ app.use("/api/categorias", categoriaRoutes);
 app.use("/api/roles", rolRoutes);
 app.use("/api/usuarios", usuarioRoutes);
 
-// Ruta de prueba
+//prueba
 app.get("/", (req, res) => {
   res.json({ 
     message: "API Almendra - HTTP/1.1",

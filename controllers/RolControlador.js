@@ -17,7 +17,7 @@ exports.detail = async (req, res) => {
     if (!rol) return res.status(404).json({ message: "Rol no encontrado" });
     res.json(rol);
   } catch {
-    res.status(400).json({ message: "ID inválido" });
+    res.status(400).json({ message: "ID invalido" });
   }
 };
 

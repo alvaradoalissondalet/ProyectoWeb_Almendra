@@ -33,7 +33,6 @@ const UsuarioSchema = new mongoose.Schema({
     versionKey: false
 });
 
-// Hash password antes de guardar
 UsuarioSchema.pre('save', async function(next) {
     if (!this.isModified('Password')) return next();
     this.Password = await bcrypt.hash(this.Password, 12);
